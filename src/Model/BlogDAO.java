@@ -1,36 +1,34 @@
 package Model;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class AccountDAO {
+public class BlogDAO {
     private DataSource dataSource;
     private Connection conn = null;
     private PreparedStatement pstmt = null;
     private String sql;
 
-    public AccountDAO(DataSource dataSource) {
+    public BlogDAO(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    public boolean isAccountExisted(Account account) {
+    public List<Blog> getBlog(Blog blog) {
         ResultSet rs = null;
-        boolean exist = false;
+        List<Blog> blogs = new ArrayList<>();
 
         try {
             conn = dataSource.getConnection();
-            sql = "SELECT * FROM accinfo WHERE account=?";
+            sql = "SELECT txt, date FROM blog WHERE name=?";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, account.getAccount());
+            pstmt.setString(1, blog.getName());
             rs = pstmt.executeQuery();
 
-            if(rs.next()) {
-                exist = (rs.getInt(1) == 1); //判断有无查询结果
+            while (rs.next()) {
+                blogs.add(new Blog(blog.getName(), rs.getString(2), rs.getTimestamp(3)));
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
@@ -56,21 +54,22 @@ public class AccountDAO {
                 e.printStackTrace();
             }
 
-            return exist;
+            return blogs;
         }
     }
 
-    public void addAccount(Account account) {
+    public void addBlog(Blog blog) {
         try {
             conn = dataSource.getConnection();
-            sql = "INSERT INTO accinfo (account,password) VALUES (?,?)";
-            conn.prepareStatement(sql);
-            pstmt.setString(1, account.getAccount());
-            pstmt.setString(2, account.getPassword());
+            sql = "INSERT INTO blog(name, txt, date) VALUES (?,?,?)";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, blog.getName());
+            pstmt.setString(2, blog.getTxt());
+            pstmt.setTimestamp(3, new Timestamp(blog.getDate().getTime()));
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 if(pstmt != null) {
                     pstmt.close();
@@ -88,29 +87,16 @@ public class AccountDAO {
         }
     }
 
-    public Account getAccount(Account account) {
-        ResultSet rs = null;
-        Account acc = null;
-
+    public void deleteBlog(Blog blog) {
         try {
             conn = dataSource.getConnection();
-            sql = "SELECT password FROM accinfo WHERE account=?";
-            conn.prepareStatement(sql);
-            pstmt.setString(1, account.getAccount());
-            rs = pstmt.executeQuery();
-            if(rs.next()) {
-                acc = new Account(account.getAccount(), rs.getString(1));
-            }
+            sql = "DELETE FROM blog WHERE name=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, blog.getName());
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            try {
-                if(rs != null) {
-                    rs.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        } finally {
             try {
                 if(pstmt != null) {
                     pstmt.close();
@@ -126,7 +112,5 @@ public class AccountDAO {
                 e.printStackTrace();
             }
         }
-
-        return acc;
     }
 }

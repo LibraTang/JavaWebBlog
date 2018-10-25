@@ -1,8 +1,6 @@
 <component name="libraryTable">
   <library name="standard">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../Myblog/web/WEB-INF/lib/standard.jar!/" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>
