@@ -63,8 +63,8 @@ public class AccountDAO {
     public void addAccount(Account account) {
         try {
             conn = dataSource.getConnection();
-            sql = "INSERT INTO accinfo (account,password) VALUES (?,?)";
-            conn.prepareStatement(sql);
+            sql = "INSERT INTO accinfo(account,password) VALUES (?,?)";
+            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, account.getAccount());
             pstmt.setString(2, account.getPassword());
             pstmt.executeUpdate();
