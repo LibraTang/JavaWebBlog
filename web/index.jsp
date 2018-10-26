@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Iterator" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
@@ -13,37 +15,44 @@
     <title>欢迎</title>
 </head>
 <body>
-<div align="left">
+<div align="center">
     <h1>登录</h1>
-    <form action="/Login" method="post">
+    <%
+        List<String> info = (List<String>) request.getAttribute("info"); //得到结果
+        String s;
+
+        //若用户有登录操作，则信息不为空
+        if(info != null) {
+            Iterator<String> iterator = info.iterator();
+            while(iterator.hasNext()) {
+                s = iterator.next();
+                //若登录成功则跳转到首页
+                if (s.equals("登录成功")) {
+                    response.sendRedirect("/ServletVIP");
+                }
+                //登录不成功提示错误
+                else {
+    %>
+    <%--显示错误--%>
+    <h4><%=s%></h4>
+
+    <%
+                }
+            }
+        }
+    %>
+
+    <form action="/ServletLogin" method="post">
         账号：<input type="text" name="account"><br>
         <br>
         密码：<input type="password" name="password"><br>
         <br>
         <input type="submit" value="登录">
     </form>
-    <a href="register.jsp">还不是会员？</a>
-</div>
-<div>
-    <table style="text-align: left; width: 510px;height: 88px;" border="0" cellpadding="2" cellspacing="2">
-        <thead>
-        <tr>
-            <th><hr></th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="blog" items="${blogs}">
-            <tr>
-                <td style="vertical-align: top">
-                        ${blog.name}<br>
-                    <c:out value="${blog.txt}"/><br>
-                    <fmt:formatDate value="${blog.date}" type="both" dateStyle="full" timeStyle="full"/>
-                    <hr>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+
+    <a href="register.jsp">还不是会员？</a><br>
+    <br>
+    <a href="/ServletUser">以游客身份访问</a>
 </div>
 </body>
 </html>

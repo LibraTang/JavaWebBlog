@@ -26,7 +26,7 @@ public class AccountDAO {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, account.getAccount());
             rs = pstmt.executeQuery();
-
+    
             if(rs.next()) {
                 exist = (rs.getInt(1) == 1); //判断有无查询结果
             }

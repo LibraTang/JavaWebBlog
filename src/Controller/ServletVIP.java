@@ -12,15 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ServletUser", urlPatterns = "/ServletUser")
-public class ServletUser extends HttpServlet {
+@WebServlet(name="ServletVIP", urlPatterns="/ServletVIP")
+public class ServletVIP extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService = new UserService();
         List<Blog> blogs = userService.showBlog();
 
         req.setAttribute("blogs", blogs);
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        req.getRequestDispatcher("home.jsp").forward(req, resp);
     }
 
     @Override

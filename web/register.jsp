@@ -13,7 +13,7 @@
 <div align="center">
     <body>
         <h1>注册</h1>
-        <form action="/Register" method="post">
+        <form action="/ServletRegister" method="post">
             账号：<input type="text" name="account"><br>
             <br>
             密码：<input type="password" name="password"><br>
