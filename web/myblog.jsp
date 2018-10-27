@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: LibraTang
@@ -13,7 +14,13 @@
 <div align="center">
     <body>
     <h1>我的博客</h1>
-
+        <hr/>
+        <c:forEach items="${myblogs}" var="myblog">
+            <p>${myblog.txt}</p>
+            <h6>${myblog.name}</h6>
+            <h6>${myblog.date}</h6>
+            <hr/>
+        </c:forEach>
     </body>
 </div>
 </html>

@@ -15,8 +15,7 @@ import java.util.List;
 public class ServletVisitor extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService = new UserService();
-        List<Blog> blogs = userService.showBlog();
+        List<Blog> blogs = UserService.showBlog();
 
         req.setAttribute("blogs", blogs);
         req.getRequestDispatcher("visitor.jsp").forward(req, resp);
