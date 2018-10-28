@@ -14,7 +14,7 @@
 <div align="left">
     <button onclick="{location.href='/ServletMyblog'}">我的博客</button><br>
     <br>
-    <button onclick="{location.href='/ServletAddblog'}">写博客</button>
+    <button onclick="{location.href='addblog.jsp'}">写博客</button>
 </div>
 <div align="center">
     <body>
@@ -22,7 +22,7 @@
     <hr/>
     <c:forEach items="${blogs}" var="blog">
         <p>${blog.txt}</p>
-        <h6>${blog.name}</h6>
+        <h6>By ${blog.name}</h6>
         <h6>${blog.date}</h6>
         <hr/>
     </c:forEach>

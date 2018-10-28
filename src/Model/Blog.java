@@ -7,13 +7,15 @@ public class Blog implements Serializable {
     private String name;
     private String txt;
     private Date date;
+    private int id;
 
     public Blog(){}
 
-    public Blog(String name, String txt, Date date) {
+    public Blog(String name, String txt, Date date, int id) {
         this.name = name;
         this.txt = txt;
         this.date = date;
+        this.id = id;
     }
 
     public String getName() {
@@ -38,5 +40,13 @@ public class Blog implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

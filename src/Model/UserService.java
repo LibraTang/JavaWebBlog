@@ -24,7 +24,7 @@ public class UserService {
             rs = pstmt.executeQuery();
 
             while(rs.next()) {
-                Blog blog = new Blog(rs.getString(1), rs.getString(2), rs.getTimestamp(3));
+                Blog blog = new Blog(rs.getString(1), rs.getString(2), rs.getTimestamp(3), rs.getInt(4));
                 blogs.add(blog);
             }
 
@@ -72,7 +72,7 @@ public class UserService {
             rs = pstmt.executeQuery();
 
             while(rs.next()) {
-                Blog blog = new Blog(rs.getString(1), rs.getString(2), rs.getTimestamp(3));
+                Blog blog = new Blog(rs.getString(1), rs.getString(2), rs.getTimestamp(3), rs.getInt(4));
                 blogs.add(blog);
             }
 
@@ -102,6 +102,101 @@ public class UserService {
             }
 
             return blogs;
+        }
+    }
+
+    public static void addBlog(Account account, String txt) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql;
+        List<Blog> blogs = new ArrayList<>();
+        try {
+            conn = DatabaseConnection.dbconnect(conn);
+            sql = "INSERT INTO blog (name, txt, date) VALUES (?, ?, now())";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, account.getAccount());
+            pstmt.setString(2, txt);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if(conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void deleteBlog(String id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql;
+        List<Blog> blogs = new ArrayList<>();
+        try {
+            conn = DatabaseConnection.dbconnect(conn);
+            sql = "DELETE FROM blog WHERE id=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if(conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void modifyMyblog(String blog, int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql;
+        try {
+            conn = DatabaseConnection.dbconnect(conn);
+            sql = "UPDATE blog SET txt=?, date=now() WHERE id=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, blog);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if(conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

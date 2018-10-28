@@ -14,11 +14,11 @@
     <body>
         <h1>注册</h1>
         <form action="/ServletRegister" method="post">
-            账号：<input type="text" name="account"><br>
+            账号：<input type="text" name="account" placeholder="不多于15个英文字母"><br>
             <br>
-            密码：<input type="password" name="password"><br>
+            密码：<input type="password" name="password" placeholder="不多于16个英文字母"><br>
             <br>
-            确认密码：<input type="password" name="confirmedPassword"><br>
+            确认密码：<input type="password" name="confirmedPassword" placeholder="确认密码"><br>
             <br>
             <input type="submit" value="注册">
         </form>

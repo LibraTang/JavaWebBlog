@@ -27,7 +27,7 @@ public class BlogDAO {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                blogs.add(new Blog(blog.getName(), rs.getString(2), rs.getTimestamp(3)));
+                blogs.add(new Blog(blog.getName(), rs.getString(2), rs.getTimestamp(3), rs.getInt(4)));
             }
         } catch (SQLException e) {
             e.printStackTrace();

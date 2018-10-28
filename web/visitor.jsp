@@ -18,7 +18,7 @@
 <hr/>
 <c:forEach items="${blogs}" var="blog">
     <p>${blog.txt}</p>
-    <h6>${blog.name}</h6>
+    <h6>By ${blog.name}</h6>
     <h6>${blog.date}</h6>
     <hr/>
 </c:forEach>

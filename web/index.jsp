@@ -52,7 +52,7 @@
 
     <a href="register.jsp">还不是会员？</a><br>
     <br>
-    <a href="/ServletUser">以游客身份访问</a>
+    <a href="/ServletVisitor">以游客身份访问</a>
 </div>
 </body>
 </html>
