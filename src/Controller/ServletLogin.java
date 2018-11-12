@@ -18,7 +18,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ServletLogin", urlPatterns = "/ServletLogin")
 public class ServletLogin extends HttpServlet {
 
     @Override

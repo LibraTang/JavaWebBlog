@@ -29,4 +29,76 @@
         </jsp-property-group>
     </jsp-config>
 
+    <servlet>
+        <servlet-name>ServletAddblog</servlet-name>
+        <servlet-class>Controller.ServletAddblog</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAddblog</servlet-name>
+        <url-pattern>/ServletAddblog</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletDeleteblog</servlet-name>
+        <servlet-class>Controller.ServletDeleteblog</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletDeleteblog</servlet-name>
+        <url-pattern>/ServletDeleteblog</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletLogin</servlet-name>
+        <servlet-class>Controller.ServletLogin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletLogin</servlet-name>
+        <url-pattern>/ServletLogin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletModifyblog</servlet-name>
+        <servlet-class>Controller.ServletModifyblog</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletModifyblog</servlet-name>
+        <url-pattern>/ServletModifyblog</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletMyblog</servlet-name>
+        <servlet-class>Controller.ServletMyblog</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletMyblog</servlet-name>
+        <url-pattern>/ServletMyblog</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletRegister</servlet-name>
+        <servlet-class>Controller.ServletRegister</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletRegister</servlet-name>
+        <url-pattern>/ServletRegister</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletVIP</servlet-name>
+        <servlet-class>Controller.ServletVIP</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletVIP</servlet-name>
+        <url-pattern>/ServletVIP</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletVisitor</servlet-name>
+        <servlet-class>Controller.ServletVisitor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletVisitor</servlet-name>
+        <url-pattern>/ServletVisitor</url-pattern>
+    </servlet-mapping>
+
 </web-app>

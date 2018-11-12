@@ -11,14 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ServletVisitor", urlPatterns = "/ServletVisitor")
 public class ServletVisitor extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Blog> blogs = UserService.showBlog();
 
         req.setAttribute("blogs", blogs);
-        req.getRequestDispatcher("visitor.jsp").forward(req, resp);
+        req.getRequestDispatcher("/visitor.jsp").forward(req, resp);
     }
 
     @Override
